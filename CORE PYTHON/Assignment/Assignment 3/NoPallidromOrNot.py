@@ -1,14 +1,20 @@
 
-n = int(input('enter a 3 digit number:'))
+num = int(input('enter a 3 digit number:'))
 
 #seprate digits
-hundred = n // 100
-ten = (n // 10) % 10
-unit = n % 10
+d1 = num % 10
+num = num //10
 
-if(hundred == unit):
-    print(f'{n} is palindrom number.')
+d2 = num % 10
+num = num // 10
+
+d3 = num % 10
+num = num // 10
+
+if(d1 == d3):
+    print(f'given number is palindrom number.')
 else:
-    print(f'{n} is not palindrom number.')
+    print(f'given number is not palindrom number.')
+
 
 
