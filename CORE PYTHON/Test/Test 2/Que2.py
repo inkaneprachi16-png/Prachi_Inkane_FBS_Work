@@ -1,11 +1,17 @@
 num = int(input('enter three digit number:'))
 
-#digt sepration
-d1 = num // 100
-d2 = (num//10)%10
-d3 = num%10
+#digit spration
+d1 = num % 10
+num = num //10
 
-if(d1 == d2*d2 and d1 == d3/2):
+d2 = num % 10
+num = num // 10
+
+d3 = num % 10
+num = num // 10
+
+
+if(d3 == 2*d2 and d3 == d1/2):
     print(f'yes, you have done it')
 else:
     print(f'Please try next time')
