@@ -1,7 +1,16 @@
-x = int(input('Enter the first digit value:'))
-y = int(input('Enter the second digit values:'))
-z = int(input('Enter the third digit values'))
+num = int(input('enter the tree digit number:'))
 
-sum = x + y + z
-print('the sum of three digit is:', sum)
-print(f' the sum of three digits {x}, {y}, {z} is {x+y+z}')
+#digit sepration
+d1 = num%10
+num = num // 10
+
+d2 = num%10
+num = num// 10
+
+d3 = num%10
+num = num//10
+
+#addition of digits 
+sum = d1 + d2 + d3
+
+print(f' sum of three digit is {sum}')
