@@ -12,7 +12,9 @@ d3 = num % 10
 num = num // 10
 
 
-print(f'reverse of the given three digits  is {d1} {d2} {d3}')
+reverse = d1*100+d2*10+d3
+print(f'reverse of three digits is {reverse}')
+
 
 
 
