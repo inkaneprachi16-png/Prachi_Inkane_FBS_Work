@@ -1,11 +1,19 @@
-d = int(input('Enter the distance in km:'))
+feet = int(input('enter the distance in feet:'))
+inch = int(input('enter the distance in inches:'))
 
-meter = d * 1000
+#feet to meter
+f_t_m = feet*0.3048
+print(f'given distance {feet}f = {f_t_m} m')
 
-feet = d * 3280.84
+#feet to centimeter
+f_t_cm =  feet* 30.48
+print(f'given distance {feet}f = {f_t_cm}cm')
 
-inch = d * 39370.1
 
-centimetr = d * 100000
-
-print(f'The given distance in km is converted into {meter}m ,{feet}f, {inch}inch, {centimetr}')
+#inches to meter
+i_t_m = inch*0.0254
+print(f'given distance {inch}inch = {i_t_m} m')
+ 
+#inches to centimeter
+i_t_cm = inch*2.54
+print(f'given distance {inch}inch = {i_t_cm}cm')
