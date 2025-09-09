@@ -7,6 +7,5 @@ for i in range(n):
     sum_term = (2**i)-1
     print(term, end=' ')
 print()
-print('the sum of the geometric series is :', sum_term)
+print(f'the sum of the geometric series a+ar+ar^2=ar^3+...+ar^n-1 for {n} is : {sum_term}')
     
-print()
