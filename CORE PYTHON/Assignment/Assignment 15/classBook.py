@@ -7,10 +7,11 @@ class Book:
 
     def showbook(self):
         print('Book details')
-        return f'BOOK NAME:{self.bid}\nBOOK NANME:{self.bname}\nPRICE:{self.price}\nAUTHOR:{self.author}\n'
+        return f'BOOK ID:{self.bid}\nBOOK NANME:{self.bname}\nPRICE:{self.price}\nAUTHOR:{self.author}\n'
     
     def __del__(self):                                              ####destructor call
         print('Destructor call')
 
 b1 = Book(101, 'Python', 500, 'S.B.Kishor')
+
 print(b1.showbook())
