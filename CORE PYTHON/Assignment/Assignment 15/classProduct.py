@@ -12,5 +12,6 @@ class Product:
     def __del__(self):                              ##destructor call
         print('destructor call')
 
-p1 = Product(1001, 'Python', 700)
+p1 = Product(1001, 'Laptop', 70000)
+
 print(p1.showProducts())
