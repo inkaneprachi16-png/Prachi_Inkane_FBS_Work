@@ -5,4 +5,5 @@ multiplication = 1
 for item in di1.values():
     multiplication *= item
 
-print(f'sum of all item in dictionary is : {multiplication}')
+
+print(f'multiplication of all item in dictionary is : {multiplication}')
