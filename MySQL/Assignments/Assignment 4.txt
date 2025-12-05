@@ -1,0 +1,386 @@
+
+mysql>  create table employee(
+    -> employee_id int primary key,
+    -> first_name varchar(50),
+    -> last_name varchar(50),
+    -> job_id varchar(50),
+    -> salary decimal(10,2),
+    -> department_id int,
+    -> hire_date date
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into employee values(101,'john', 'smith', 'programer', 12000, 30, '1987-03-15'),
+    -> (102, 'alice', 'brown', 'sh_clerk', 4500, 100, '1987-07-10'),
+    -> (103, 'robert', 'king', 'manager', 17000, 90, '1986-11-10'),
+    -> (104, 'becky', 'scott', 'programer', 9500, 30, '1987-11-22'),
+    -> (105, 'michael', 'ford', 'analyst', 10000, 100, '1988-04-12'),
+    -> (106, 'jacob', 'blake', 'sh_cleark', 8000, 50, '1987-09-02'),
+    -> (107, 'rebecca', 'stone', 'programmer', 15000, 30, '1987-12-25'),
+    -> (108, 'brianna', 'carter', 'hr', 6000, 20, '1989-05-17'),
+    -> (109, 'bruce', 'evans', 'programmer', 14000, 100, '1990-02-10'),
+    -> (110, 'alice', 'morris', 'shipper', 7000, 20, '1987-06-05');
+Query OK, 10 rows affected (0.01 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++-------------+------------+-----------+------------+----------+---------------+------------+
+| employee_id | first_name | last_name | job_id     | salary   | department_id | hire_date  |
++-------------+------------+-----------+------------+----------+---------------+------------+
+|         101 | john       | smith     | programer  | 12000.00 |            30 | 1987-03-15 |
+|         102 | alice      | brown     | sh_clerk   |  4500.00 |           100 | 1987-07-10 |
+|         103 | robert     | king      | manager    | 17000.00 |            90 | 1986-11-10 |
+|         104 | becky      | scott     | programer  |  9500.00 |            30 | 1987-11-22 |
+|         105 | michael    | ford      | analyst    | 10000.00 |           100 | 1988-04-12 |
+|         106 | jacob      | blake     | sh_cleark  |  8000.00 |            50 | 1987-09-02 |
+|         107 | rebecca    | stone     | programmer | 15000.00 |            30 | 1987-12-25 |
+|         108 | brianna    | carter    | hr         |  6000.00 |            20 | 1989-05-17 |
+|         109 | bruce      | evans     | programmer | 14000.00 |           100 | 1990-02-10 |
+|         110 | alice      | morris    | shipper    |  7000.00 |            20 | 1987-06-05 |
++-------------+------------+-----------+------------+----------+---------------+------------+
+10 rows in set (0.00 sec)
+######################################################################################################
+
+1). Write a query to display the names (first_name, last_name) using alias
+name “First Name", "Last Name.
+Answer:
+mysql> select first_name as 'first Name',
+    -> last_name as 'Last name'
+    -> from employee;
++------------+-----------+
+| first Name | Last name |
++------------+-----------+
+| john       | smith     |
+| alice      | brown     |
+| robert     | king      |
+| becky      | scott     |
+| michael    | ford      |
+| jacob      | blake     |
+| rebecca    | stone     |
+| brianna    | carter    |
+| bruce      | evans     |
+| alice      | morris    |
++------------+-----------+
+10 rows in set (0.00 sec)
+
+############################################################################################################
+2)2. Write a query to get unique department ID from employee table.
+Answer:
+mysql> select distinct department_id from employee;
++---------------+
+| department_id |
++---------------+
+|            30 |
+|           100 |
+|            90 |
+|            50 |
+|            20 |
++---------------+
+5 rows in set (0.00 sec)
+
+##########################################################################################################
+3) Write a query to get all employee details from the employee table order
+by first name, descending.
+Answer:
+mysql> select * from employee
+    -> order by first_name desc;
++-------------+------------+-----------+------------+----------+---------------+------------+
+| employee_id | first_name | last_name | job_id     | salary   | department_id | hire_date  |
++-------------+------------+-----------+------------+----------+---------------+------------+
+|         103 | robert     | king      | manager    | 17000.00 |            90 | 1986-11-10 |
+|         107 | rebecca    | stone     | programmer | 15000.00 |            30 | 1987-12-25 |
+|         105 | michael    | ford      | analyst    | 10000.00 |           100 | 1988-04-12 |
+|         101 | john       | smith     | programer  | 12000.00 |            30 | 1987-03-15 |
+|         106 | jacob      | blake     | sh_cleark  |  8000.00 |            50 | 1987-09-02 |
+|         109 | bruce      | evans     | programmer | 14000.00 |           100 | 1990-02-10 |
+|         108 | brianna    | carter    | hr         |  6000.00 |            20 | 1989-05-17 |
+|         104 | becky      | scott     | programer  |  9500.00 |            30 | 1987-11-22 |
+|         102 | alice      | brown     | sh_clerk   |  4500.00 |           100 | 1987-07-10 |
+|         110 | alice      | morris    | shipper    |  7000.00 |            20 | 1987-06-05 |
++-------------+------------+-----------+------------+----------+---------------+------------+
+10 rows in set (0.00 sec)
+
+#############################################################################################################
+4)4. Write a query to get the names (first_name, last_name), salary, PF of all
+the employees (PF is calculated as 15% of salary).
+Answer:
+mysql> select first_name, last_name, salary,
+    -> salary * 0.15 as pf from employee;
++------------+-----------+----------+-----------+
+| first_name | last_name | salary   | pf        |
++------------+-----------+----------+-----------+
+| john       | smith     | 12000.00 | 1800.0000 |
+| alice      | brown     |  4500.00 |  675.0000 |
+| robert     | king      | 17000.00 | 2550.0000 |
+| becky      | scott     |  9500.00 | 1425.0000 |
+| michael    | ford      | 10000.00 | 1500.0000 |
+| jacob      | blake     |  8000.00 | 1200.0000 |
+| rebecca    | stone     | 15000.00 | 2250.0000 |
+| brianna    | carter    |  6000.00 |  900.0000 |
+| bruce      | evans     | 14000.00 | 2100.0000 |
+| alice      | morris    |  7000.00 | 1050.0000 |
++------------+-----------+----------+-----------+
+10 rows in set (0.00 sec)
+
+################################################################################################################3
+5)Write a query to get the employee ID, names (first_name, last_name),
+salary in ascending order of salary.
+Answer:
+mysql> select employee_id, first_name, last_name, salary from employee
+    -> order by salary;
++-------------+------------+-----------+----------+
+| employee_id | first_name | last_name | salary   |
++-------------+------------+-----------+----------+
+|         102 | alice      | brown     |  4500.00 |
+|         108 | brianna    | carter    |  6000.00 |
+|         110 | alice      | morris    |  7000.00 |
+|         106 | jacob      | blake     |  8000.00 |
+|         104 | becky      | scott     |  9500.00 |
+|         105 | michael    | ford      | 10000.00 |
+|         101 | john       | smith     | 12000.00 |
+|         109 | bruce      | evans     | 14000.00 |
+|         107 | rebecca    | stone     | 15000.00 |
+|         103 | robert     | king      | 17000.00 |
++-------------+------------+-----------+----------+
+10 rows in set (0.00 sec)
+
+########################################################################################################################
+6)Write a query to get the total salaries payable to employees.
+Answer:
+mysql> select sum(salary) 'total salary' from employee;
++--------------+
+| total salary |
++--------------+
+|    103000.00 |
++--------------+
+1 row in set (0.00 sec)
+
+###########################################################################################################################
+7)mysql> select max(salary), min(salary) from employee;
++-------------+-------------+
+| max(salary) | min(salary) |
++-------------+-------------+
+|    17000.00 |     4500.00 |
++-------------+-------------+
+1 row in set (0.00 sec)
+
+############################################################################################################################
+8)Write a query to get the average salary and number of employees in the
+employees table.
+Answer:
+mysql> select avg(salary), count(*) from employee;
++--------------+----------+
+| avg(salary)  | count(*) |
++--------------+----------+
+| 10300.000000 |       10 |
++--------------+----------+
+1 row in set (0.00 sec)
+
+#############################################################################################################################
+9)Write a query to get the number of employees working with the
+company.
+Answer:
+mysql> select count(*) from employee;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+1 row in set (0.01 sec)
+
+#################################################################################################################################
+10.Write a query to get the number of jobs available in the employees table
+Answer:
+mysql> select count(distinct job_id) as number_of_job from employee;
++---------------+
+| number_of_job |
++---------------+
+|             8 |
++---------------+
+1 row in set (0.01 sec)
+
+############################################################################################################################
+11.Write a query to select first 10 records from a table.
+Answer:
+mysql> select * from employee limit 10;
++-------------+------------+-----------+------------+----------+---------------+------------+
+| employee_id | first_name | last_name | job_id     | salary   | department_id | hire_date  |
++-------------+------------+-----------+------------+----------+---------------+------------+
+|         101 | john       | smith     | programer  | 12000.00 |            30 | 1987-03-15 |
+|         102 | alice      | brown     | sh_clerk   |  4500.00 |           100 | 1987-07-10 |
+|         103 | robert     | king      | manager    | 17000.00 |            90 | 1986-11-10 |
+|         104 | becky      | scott     | programer  |  9500.00 |            30 | 1987-11-22 |
+|         105 | michael    | ford      | analyst    | 10000.00 |           100 | 1988-04-12 |
+|         106 | jacob      | blake     | sh_cleark  |  8000.00 |            50 | 1987-09-02 |
+|         107 | rebecca    | stone     | programmer | 15000.00 |            30 | 1987-12-25 |
+|         108 | brianna    | carter    | hr         |  6000.00 |            20 | 1989-05-17 |
+|         109 | bruce      | evans     | programmer | 14000.00 |           100 | 1990-02-10 |
+|         110 | alice      | morris    | shipper    |  7000.00 |            20 | 1987-06-05 |
++-------------+------------+-----------+------------+----------+---------------+------------+
+10 rows in set (0.00 sec)
+
+################################################################################################################################
+12.Write a query to display the name (first_name, last_name) and salary for
+all employees whose salary is not in the range $10,000 through $15,000
+Answer:
+mysql> select first_name, last_name , salary from employee
+    -> where salary not between 10000 and 15000;
++------------+-----------+----------+
+| first_name | last_name | salary   |
++------------+-----------+----------+
+| alice      | brown     |  4500.00 |
+| robert     | king      | 17000.00 |
+| becky      | scott     |  9500.00 |
+| jacob      | blake     |  8000.00 |
+| brianna    | carter    |  6000.00 |
+| alice      | morris    |  7000.00 |
++------------+-----------+----------+
+6 rows in set (0.01 sec)
+
+####################################################################################################################################
+13.Write a query to display the name (first_name, last_name) and
+department ID of all employees in departments 30 or 100 in ascending
+order.
+Answer:
+mysql> select first_name, last_name, department_id from employee
+    -> where department_id in (30,100)
+    -> order by department_id;
++------------+-----------+---------------+
+| first_name | last_name | department_id |
++------------+-----------+---------------+
+| john       | smith     |            30 |
+| becky      | scott     |            30 |
+| rebecca    | stone     |            30 |
+| alice      | brown     |           100 |
+| michael    | ford      |           100 |
+| bruce      | evans     |           100 |
++------------+-----------+---------------+
+6 rows in set (0.01 sec)
+
+##############################################################################################################################
+14.Write a query to display the name (first_name, last_name) and salary for
+all employees whose salary is not in the range $10,000 through $15,000
+and are in department 30 or 100.
+Answer:
+mysql> select first_name, last_name, salary from employee
+    -> where salary not between 10000 and 15000
+    -> and department_id in (30, 100);
++------------+-----------+---------+
+| first_name | last_name | salary  |
++------------+-----------+---------+
+| alice      | brown     | 4500.00 |
+| becky      | scott     | 9500.00 |
++------------+-----------+---------+
+2 rows in set (0.01 sec)
+
+#############################################################################################################################
+15.Write a query to display the name (first_name, last_name) and hire date
+for all employees who were hired in 1987.
+Answer:
+mysql> select first_name, last_name , hire_date from employee
+    -> where hire_date between date '1987-01-01' and '1987-12-31';
++------------+-----------+------------+
+| first_name | last_name | hire_date  |
++------------+-----------+------------+
+| john       | smith     | 1987-03-15 |
+| alice      | brown     | 1987-07-10 |
+| becky      | scott     | 1987-11-22 |
+| jacob      | blake     | 1987-09-02 |
+| rebecca    | stone     | 1987-12-25 |
+| alice      | morris    | 1987-06-05 |
++------------+-----------+------------+
+6 rows in set (0.01 sec)
+
+########################################################################################################################
+16.Write a query to display the first_name of all employees who have both
+"b" and "c" in their first name
+Answer:
+mysql> select first_name from employee
+    -> where first_name like '%b%' and first_name like '%c%';
++------------+
+| first_name |
++------------+
+| becky      |
+| jacob      |
+| rebecca    |
+| bruce      |
++------------+
+4 rows in set (0.00 sec)
+
+################################################################################################################################
+17.Write a query to display the last name, job, and salary for all employees
+whose job is that of a Programmer or a Shipping Clerk, and whose salary
+is not equal to $4,500, $10,000, or $15,000
+Answer:
+mysql> select last_name, job_id, salary from employee
+    -> where job_id in('programmer', 'shipping cleark')
+    -> and salary not in (4500, 10000,15000);
++-----------+------------+----------+
+| last_name | job_id     | salary   |
++-----------+------------+----------+
+| evans     | programmer | 14000.00 |
++-----------+------------+----------+
+1 row in set (0.00 sec)
+
+##########################################################################################################################
+18.Write a query to display the last name of employees whose names have
+exactly 6 characters.
+Answer:mysql> select last_name from employee
+    -> where length(last_name) =6;
++-----------+
+| last_name |
++-----------+
+| carter    |
+| morris    |
++-----------+
+2 rows in set (0.00 sec)
+
+###############################################################################################################################
+19.Write a query to display the last name of employees having 'e' as the third
+character.
+Answer:
+mysql> select last_name from employee
+    -> where last_name like '__e%';
+Empty set (0.01 sec)
+
+##########################################################################################################################
+20.Write a query to display the jobs/designations available in the employees
+table.
+Answer:
+mysql> select distinct job_id from employee;
++------------+
+| job_id     |
++------------+
+| programer  |
+| sh_clerk   |
+| manager    |
+| analyst    |
+| sh_cleark  |
+| programmer |
+| hr         |
+| shipper    |
++------------+
+8 rows in set (0.00 sec)
+
+###############################################################################################################################
+21.Write a query to select all record from employees where last name in
+'BLAKE', 'SCOTT', 'KING' and 'FORD'
+Answer:
+mysql> select * from employee
+    -> where last_name in ('blake', 'scott', 'king', 'ford');
++-------------+------------+-----------+-----------+----------+---------------+------------+
+| employee_id | first_name | last_name | job_id    | salary   | department_id | hire_date  |
++-------------+------------+-----------+-----------+----------+---------------+------------+
+|         103 | robert     | king      | manager   | 17000.00 |            90 | 1986-11-10 |
+|         104 | becky      | scott     | programer |  9500.00 |            30 | 1987-11-22 |
+|         105 | michael    | ford      | analyst   | 10000.00 |           100 | 1988-04-12 |
+|         106 | jacob      | blake     | sh_cleark |  8000.00 |            50 | 1987-09-02 |
++-------------+------------+-----------+-----------+----------+---------------+------------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+
